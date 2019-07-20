@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Tjallinghell
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool correct = ResolvePassword(Console.ReadLine());
+            if (correct)
+            {
+                Console.WriteLine("you hacked the code!");
+            }
+            else
+            {
+                Console.WriteLine("wrong");
+            }
+        }
+
+        private static bool ResolvePassword(string v)
+        {
+            bool one = Hack(int.Parse(v)); dynamic V = (dynamic)(v.ToString().ToCharArray()); var X = (char[])V;
+            //int x = X.ToString();
+            bool two = Verify((int.Parse(v) + 5690));
+            return (one && two);
+
+        }
+
+        public static bool Verify(int digits)
+        {
+            Func<int, IEnumerable<int>> digitizer = x =>
+            {
+                var r = new List<int>();
+                while (x > 0)
+                {
+                    r.Add(x % 26);
+                    x /= 10;
+                }
+                return r;
+            };
+            return digitizer(digits).Aggregate("", (x, d) => x + ((char)(97 + d)).ToString()) == "hash";
+        }
+
+        public static bool Hack(int digit)
+        {
+            int digit1 = 0, digit2 = 0, digit3 = 0, digit4 = 0; var Digit = digit.ToString().ToCharArray(); ; Console.WriteLine("{0} {1} {2} {3}", digit1, digit2, digit3, digit4);
+            if (digit < 10)
+            {
+                digit4 = digit;
+            }
+
+            Console.WriteLine("{0} {1} {2} {3}", digit1, digit2, digit3, digit4);
+            if (digit < 100)
+            {
+                digit3 = (int)(Math.Floor((digit / 10.0))); digit4 = digit % 10;
+            };
+            ;
+            Console.WriteLine("{0} {1} {2} {3}", digit1, digit2, digit3, digit4);
+
+            if (digit < 1000)
+            { digit2 = (int)(Math.Floor((digit / 100.0))); digit3 = (int)(Math.Floor((digit / 10.0))) % 10; digit4 = digit % 10; }
+            Console.WriteLine("{0} {1} {2} {3}", digit1, digit2, digit3, digit4);
+            if (digit >= 1000)
+            { digit1 = (int)(Math.Floor((digit / 1000.0))); digit2 = (int)(Math.Floor((digit / 100.0))) % 10; digit3 = (int)(Math.Floor((digit / 10.0))) % 10; digit4 = digit % 10; }
+            Console.WriteLine("{0} {1} {2} {3}", digit1, digit2, digit3, digit4);
+
+            var digits = new int[3] { digit1, digit2, digit3 }; var list = new int[] { 1, 2, 3 }; var res = 0;
+            for (int Intergral = 0; Intergral < digits.Length; Intergral++) { res += digits[Intergral] * list[Intergral]; }
+            return (Digit[int.Parse(digit4.ToString()) - 4].ToString() == digit4.ToString() && Digit[1] == Digit[2]);
+        }
+    }
+}
