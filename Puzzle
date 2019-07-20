@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Tjallinghell
+namespace TauGeneratorMainframeDeepCode
 {
     class Program
     {
@@ -12,6 +12,7 @@ namespace Tjallinghell
             if (correct)
             {
                 Console.WriteLine("you hacked the code!");
+                //The generator is now down!
             }
             else
             {
